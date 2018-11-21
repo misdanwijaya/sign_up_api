@@ -66,22 +66,20 @@ session_start();
 			//sent email
 			// Now we are ready to build our welcome email
 		    $to = $email;
-		    $subject = "API Lembaga Penerbangan dan Antariksa Nasional";
+		    $subject = "Registration API LAPAN";
 		    $body = 
 		    "Dear " . $username . ",
 
 This is your API Key : " . $api_key ."
 
-Please go ahead and navigate around your account. 
-Let me know if you have further questions, I am here to help. 
-Enjoy the rest of your day!
+This is an automatic email, please do not reply to this email.
 
 Kind Regards,
-Team IT LAPAN
+IT Team LAPAN
 ";
 
 		    //$headers = array('Content-Type: text/html; charset=UTF-8');
-		    $from = "api@lapan.co.id";
+		    $from = "Do-not-reply@lapan.co.id";
 
 		    mail ($to, $subject, $body, null, "-f ".$from." ");
 
