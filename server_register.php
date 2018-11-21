@@ -62,10 +62,33 @@ session_start();
 			$query = "INSERT INTO users (username, email, password,api_key) 
 					  VALUES('$username', '$email', '$password','$api_key')";
 			mysqli_query($db, $query);
+
+			//sent email
+			// Now we are ready to build our welcome email
+		    $to = $email;
+		    $subject = "API Lembaga Penerbangan dan Antariksa Nasional";
+		    $body = 
+		    "Dear " . $username . ",
+
+This is your API Key : " . $api_key ."
+
+Please go ahead and navigate around your account. 
+Let me know if you have further questions, I am here to help. 
+Enjoy the rest of your day!
+
+Kind Regards,
+Team IT LAPAN
+";
+
+		    //$headers = array('Content-Type: text/html; charset=UTF-8');
+		    $from = "api@lapan.co.id";
+
+		    mail ($to, $subject, $body, null, "-f ".$from." ");
+
 			//memasukan data ke session
 			$_SESSION['username'] = $username;
 			$_SESSION['api'] = $api_key;
-			$_SESSION['success'] = "You are now logged in";
+			$_SESSION['success'] = "You are now logged in, we also sent the detail to inbox/spam in your email";
 			header('location: index.php');
 		}
 	}
